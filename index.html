@@ -4,13 +4,13 @@
 
 
 
-<title> FHH_EHR_Medline_Plus_Compatibility </title>
+<title> Family History </title>
 
 </head>
 
 <body>
 
-<h1> FHH_EHR_Medline_Plus_Compatibility </h1>
+<h1> Family History </h1>
 
 <link href='css/autocomplete-lhc_jQueryUI.min.css' rel="stylesheet">
 <script src='js/autocomplete-lhc_jQuery.min.js'></script>
@@ -18,11 +18,14 @@
 <script src="js/jfiddle.js"></script>
 <script src="js/jquery.js"></script>
 
-<input type="text" id="demo8" name="demo8"> Code: <input id=demo8Code readonly>
+<input type="text" id="condition" placeholder="Condition">
+<input type="text" id="icd9_code" placeholder="ICD9 Code">
 <script>
-new Def.Autocompleter.Search('demo8',
+new Def.Autocompleter.Search('condition',
   'https://lforms-service.nlm.nih.gov/api/conditions/v3/search');
-  
+</script>
+
+<script>
 new Def.Autocompleter.Search('condition',
  'https://clin-table-search.lhc.nlm.nih.gov/api/conditions/v3/search?ef=term_icd9_code');
 Def.Autocompleter.Event.observeListSelections('condition', function() {
