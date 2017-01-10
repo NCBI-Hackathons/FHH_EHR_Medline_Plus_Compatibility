@@ -2,7 +2,8 @@
 <html>
 <head>
 
-<link href="css/autocomplete-lhc_jQueryUI.min.css" rel="stylesheet">
+
+
 <title> FHH_EHR_Medline_Plus_Compatibility </title>
 
 </head>
@@ -10,13 +11,30 @@
 <body>
 
 <h1> FHH_EHR_Medline_Plus_Compatibility </h1>
+
+<link href='css/autocomplete-lhc_jQueryUI.min.css' rel="stylesheet">
+<script src='js/autocomplete-lhc_jQuery.min.js'></script>
+
+<script src="js/jfiddle.js"></script>
 <script src="js/jquery.js"></script>
 
-<link href='https://clin-table-search.lhc.nlm.nih.gov/autocomplete-lhc-versions/10.0.0/autocomplete-lhc_jQueryUI.min.css' rel="stylesheet">
-<script src='https://clin-table-search.lhc.nlm.nih.gov/autocomplete-lhc-versions/10.0.0/autocomplete-lhc_jQuery.min.js'></script>
-
-<input type="text" id="condition" placeholder="Condition">
-<input type="text" id="icd9_code" placeholder="ICD9 Code">
+<input type="text" id="demo8" name="demo8"> Code: <input id=demo8Code readonly>
+<script>
+new Def.Autocompleter.Search('demo8',
+  'https://lforms-service.nlm.nih.gov/api/conditions/v3/search');
+  
+new Def.Autocompleter.Search('condition',
+ 'https://clin-table-search.lhc.nlm.nih.gov/api/conditions/v3/search?ef=term_icd9_code');
+Def.Autocompleter.Event.observeListSelections('condition', function() {
+  var conditionField = $('#condition')[0];
+  var conditionVal = condition.value;
+  var autocomp = condition.autocomp;
+  var icd9_code =
+    autocomp.getItemExtraData(conditionVal)['term_icd9_code'];
+  if (icd9_code)
+    $('#icd9_code')[0].value = icd9_code;
+});
+</script>
 
 
 </body>
